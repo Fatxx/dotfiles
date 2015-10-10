@@ -140,4 +140,4 @@ set diffopt+=vertical
 
 nmap <F8> :TagbarToggle<CR>
 
-
+autocmd BufRead,BufNewFile *.css,*.scss,*.less setlocal foldmethod=marker foldmarker={,}

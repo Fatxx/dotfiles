@@ -1,7 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
-let g:netrw_dirhist_1='/Users/andrefatia/Development/onlinegv-project/py_src/auths'
-let g:netrw_dirhist_2='/Users/andrefatia/Development/onlinegv-project/py_src/auths/static'
-let g:netrw_dirhist_3='/Users/andrefatia/Development/onlinegv-project/py_src/auths/static/auths'
-let g:netrw_dirhist_4='/Users/andrefatia/Development/onlinegv-project/py_src/auths/static/auths/app'
-let g:netrw_dirhist_5='/Users/andrefatia/Development/onlinegv-project/py_src/auths/static/auths/app/views'
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/Users/andrefatia/Development/sacosprint/app/src/assets/sass/globals'
+let g:netrw_dirhist_2='/Users/andrefatia/Development/onlinegv-project'
+let g:netrw_dirhist_3='/Users/andrefatia/Development/onlinegv-project/py_src'
+let g:netrw_dirhist_4='/Users/andrefatia/Development/onlinegv-project/py_src/landing_page'
+let g:netrw_dirhist_5='/Users/andrefatia/Development/onlinegv-project/py_src/landing_page/static'
+let g:netrw_dirhist_6='/Users/andrefatia/Development/onlinegv-project/py_src/landing_page/static/landing_page'
+let g:netrw_dirhist_7='/Users/andrefatia/Development/onlinegv-project/py_src/landing_page/static/landing_page/sass'
