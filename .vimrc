@@ -83,7 +83,6 @@ set shiftround
 set expandtab
 
 " Display extra whitespace
-set list listchars=tab:»·,trail:·,nbsp:·
 set number
 set numberwidth=5
 
