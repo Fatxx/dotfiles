@@ -15,7 +15,7 @@ cd $dir
 # Copy .dotfiles to ~
 for file in $files; do
   mv ~/.$file $olddir/
-  sudo ln -s $dir/$file ~/.$file
+  sudo ln -s $dir/.$file ~/.$file
 done
 
 install_zsh () {

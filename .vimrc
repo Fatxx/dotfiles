@@ -38,6 +38,7 @@ set laststatus=2  " Always display the status line
 set undolevels=1000 " Increase undo levels
 set pastetoggle=<F2>
 set nocompatible
+set noswapfile
 
 if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
   syntax on
