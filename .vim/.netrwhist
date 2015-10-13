@@ -1,11 +1,3 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =9
-let g:netrw_dirhist_1='/Users/andrefatia/Development/onlinegv-project/py_src/landing_page/static/landing_page'
-let g:netrw_dirhist_2='/Users/andrefatia/Development/onlinegv-project/py_src/landing_page/static/landing_page/js'
-let g:netrw_dirhist_3='/Users/andrefatia/Development/onlinegv-project/py_src/landing_page/static/landing_page/js/app'
-let g:netrw_dirhist_4='/Users/andrefatia/Development/onlinegv-project/py_src/landing_page/static/landing_page/js'
-let g:netrw_dirhist_5='/Users/andrefatia/Development/onlinegv-project/py_src/landing_page/static/landing_page'
-let g:netrw_dirhist_6='/Users/andrefatia/Development/onlinegv-project/py_src/landing_page/static/landing_page/spec'
-let g:netrw_dirhist_7='/Users/andrefatia/Development/onlinegv-project/py_src/landing_page/static/landing_page'
-let g:netrw_dirhist_8='/Users/andrefatia/Development/onlinegv-project/py_src/landing_page/static/landing_page/js'
-let g:netrw_dirhist_9='/Users/andrefatia/Development/onlinegv-project/py_src/landing_page/static/landing_page/js/app'
+let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_1='/Users/andrefatia/Development/dotfiles'
