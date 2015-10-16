@@ -89,13 +89,8 @@ export WORKON_HOME=$HOME/.virtualenvs
 source /usr/local/bin/virtualenvwrapper.sh
 export PIP_VIRTUALENV_BASE=$WORKON_HOME
 
-export NVM_DIR="~/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+source  ~/.nvm/nvm.sh
 
-function filesgrep() {
-  echo "grep -r --include='$1' '$2' $3"
-  grep -r --include='$1' '$2' $3
-}
 function vimsheet() {
   open ~/Documents/vimsheet.png
 }
