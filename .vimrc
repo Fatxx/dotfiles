@@ -2,7 +2,6 @@ call plug#begin('~/.vim/bundle')
 
 " Define bundles via Github repos
 Plug 'christoomey/vim-run-interactive'
-Plug 'scrooloose/syntastic'
 Plug 'slim-template/vim-slim'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
@@ -10,19 +9,19 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/tComment'
 Plug 'pangloss/vim-javascript'
-Plug 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
-Plug 'walm/jshint.vim'
+Plug 'jelera/vim-javascript-syntax', {'for': ['javascript']}
+Plug 'walm/jshint.vim', {'for': ['javascript']}
 Plug 'burnettk/vim-angular'
-Plug 'hynek/vim-python-pep8-indent'
-Plug 'mattn/emmet-vim'
+Plug 'hynek/vim-python-pep8-indent', { 'for': ['python'] }
+Plug 'hdima/python-syntax', { 'for': ['python'] }
 Plug 'ervandew/supertab'
 Plug 'tomasr/molokai'
 Plug 'majutsushi/tagbar'
 Plug 'JavaScript-Indent'
+Plug 'wakatime/vim-wakatime'
 
 call plug#end()
 
-let g:syntastic_html_tidy_ignore_errors = ['proprietary attribute "myhotcompany-']
 let g:angular_filename_convention = 'camelcased'
 let g:javascript_conceal_function = "ƒ"
 let g:js_indent = "~/.vim/bundle/JavaScript-Indent/indent/javascript.vim"
@@ -40,6 +39,17 @@ set pastetoggle=<F2>
 set nocompatible
 set noswapfile
 set mouse=a
+set showmatch     " set show matching parenthesis
+set ignorecase    " ignore case when searching
+set smartcase     " ignore case if search pattern is all lowercase, case-sensitive otherwise
+set hlsearch      " highlight search terms
+set incsearch     " show search matches as you type
+
+set statusline=%#ErrorMsg#[%{mode()}]%*\ %f%m%r%h%w\ 
+set statusline+=\ %=                        " align left
+set statusline+=%{fugitive#statusline()}
+set statusline+=[%{strlen(&fenc)?&fenc:&enc}]
+set statusline+=\ [\%c:\%l\/%L]
 
 if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
   syntax on

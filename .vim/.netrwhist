@@ -1,8 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/Users/andrefatia/Development/sacosprint/app'
-let g:netrw_dirhist_2='/Users/andrefatia/Development/sacosprint/app/src'
-let g:netrw_dirhist_3='/Users/andrefatia/Development/sacosprint/app/src/app'
-let g:netrw_dirhist_4='/Users/andrefatia/Development/sacosprint/app/src/app/personalize'
-let g:netrw_dirhist_5='/Users/andrefatia/Development/onlinegv-project/py_src/onlinegv'
-let g:netrw_dirhist_6='/Users/andrefatia/Development/onlinegv-project/py_src'
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/Users/andrefatia/Development/sacosprint/app/src'
+let g:netrw_dirhist_2='/Users/andrefatia/Development/sacosprint/app/src/app'
+let g:netrw_dirhist_3='/Users/andrefatia/Development/sacosprint/app/src/app/produtos'
