@@ -6,7 +6,6 @@ Plug 'slim-template/vim-slim'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
 Plug 'vim-scripts/tComment'
 Plug 'pangloss/vim-javascript'
 Plug 'jelera/vim-javascript-syntax', {'for': ['javascript']}
@@ -17,14 +16,13 @@ Plug 'hdima/python-syntax', { 'for': ['python'] }
 Plug 'ervandew/supertab'
 Plug 'tomasr/molokai'
 Plug 'majutsushi/tagbar'
-Plug 'JavaScript-Indent'
 Plug 'wakatime/vim-wakatime'
 
 call plug#end()
 
 let g:angular_filename_convention = 'camelcased'
-let g:javascript_conceal_function = "ƒ"
 let g:js_indent = "~/.vim/bundle/JavaScript-Indent/indent/javascript.vim"
+let b:javascript_fold = 1
 
 set backspace=2   " Backspace deletes like most programs in insert mode
 set nobackup
@@ -44,6 +42,7 @@ set ignorecase    " ignore case when searching
 set smartcase     " ignore case if search pattern is all lowercase, case-sensitive otherwise
 set hlsearch      " highlight search terms
 set incsearch     " show search matches as you type
+set nonumber
 
 set statusline=%#ErrorMsg#[%{mode()}]%*\ %f%m%r%h%w\ 
 set statusline+=\ %=                        " align left
@@ -56,7 +55,7 @@ if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
   set guifont=Fira\ Mono
   set columns=999
   set linespace=1.4
-endif
+endi
 
 filetype plugin indent on
 
@@ -113,13 +112,10 @@ endfunction
 inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <S-Tab> <c-n>
 
+let mapleader=","
+
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
-
-" vim-rspec mappings
-nnoremap <Leader>t :call RunCurrentSpecFile()<CR>
-nnoremap <Leader>s :call RunNearestSpec()<CR>
-nnoremap <Leader>l :call RunLastSpec()<CR>
 
 " Run commands that require an interactive shell
 nnoremap <Leader>r :RunInInteractiveShell<space>
@@ -136,12 +132,6 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
-
-" configure syntastic syntax checking to check on open as well as save
-let g:syntastic_check_on_open=1
-let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
-let g:syntastic_eruby_ruby_quiet_messages =
-    \ {"regex": "possibly useless use of a variable in void context"}
 
 " Autocomplete with dictionary words when spell check is on
 set complete+=kspell
