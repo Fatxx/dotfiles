@@ -111,7 +111,6 @@ augroup vimrc
   " - JS
   autocmd BufWritePre *.js :JSHint<CR>
   autocmd BufRead,BufNewFile *.js setlocal textwidth=80
-  au FileType javascript call JavaScriptFold()
 
   " - HTML
   autocmd BufWritePre,BufRead *.html :normal gg=G
@@ -128,8 +127,8 @@ augroup vimrc
   autocmd BufRead,BufNewFile *.md setlocal textwidth=80
 
   " - Folding 
-  autocmd FileType html,js,css,scss,sass,py setlocal foldmethod=indent
-  autocmd FileType html,js,css,scss,sass,py normal zR
+  autocmd FileType html,javascript,css,scss,sass,py setlocal foldmethod=indent
+  autocmd FileType html,javascript,css,scss,sass,py normal zR
 
 augroup END
 
