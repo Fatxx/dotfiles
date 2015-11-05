@@ -113,7 +113,7 @@ augroup vimrc
   autocmd BufRead,BufNewFile *.js setlocal textwidth=80
 
   " - HTML
-  autocmd BufWritePre,BufRead *.html :normal gg=G
+  autocmd BufWritePre,BufRead *.html :normal
 
   " - CSS
   autocmd FileType css,scss,sass setlocal iskeyword+=-
