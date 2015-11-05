@@ -9,14 +9,7 @@ Plug 'ervandew/supertab'
 Plug 'tomasr/molokai'
 Plug 'majutsushi/tagbar'
 Plug 'wakatime/vim-wakatime'
-" JS
-Plug 'pangloss/vim-javascript', { 'for': ['javascript'] }
-Plug 'jelera/vim-javascript-syntax', { 'for': ['javascript'] }
-Plug 'Shutnik/jshint2.vim', { 'for': ['javascript'] }
-Plug 'burnettk/vim-angular', { 'for': ['javascript'] }
-" Python
-Plug 'hynek/vim-python-pep8-indent', { 'for': ['python'] }
-Plug 'hdima/python-syntax', { 'for': ['python'] }
+Plug 'scrooloose/syntastic'
 
 call plug#end()
 
@@ -46,7 +39,22 @@ set encoding=utf-8
 " Statusline
 set statusline=%#ErrorMsg#[\%l:\%c\-%L]%*\ %f%m%r%h%w\ 
 set statusline+=\ %=                        " align left
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 set statusline+=%{fugitive#statusline()}    " fugitive git info
+
+" Syntastic
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+" JS
+let g:syntastic_javascript_checkers = ["eslint"]
+" HTML (Workaround to silence errors of angular directives)
+let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute " ,"trimming empty <", "unescaped &" , "lacks \"action", "is not recognized!", "discarding unexpected"]
+" Python
+let g:syntastic_python_checkers = ["pep8", "pylint", "python"]
 
 if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
   syntax on
@@ -110,7 +118,6 @@ augroup vimrc
   autocmd!
 
   " - JS
-  autocmd BufWritePre *.js :JSHint<CR>
   autocmd BufRead,BufNewFile *.js setlocal textwidth=80
 
   " - CSS
