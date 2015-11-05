@@ -41,6 +41,7 @@ set incsearch     " show search matches as you type
 set hlsearch
 set nonumber
 set nowrap
+set encoding=utf-8
 
 " Statusline
 set statusline=%#ErrorMsg#[\%l:\%c\-%L]%*\ %f%m%r%h%w\ 
@@ -111,9 +112,6 @@ augroup vimrc
   " - JS
   autocmd BufWritePre *.js :JSHint<CR>
   autocmd BufRead,BufNewFile *.js setlocal textwidth=80
-
-  " - HTML
-  autocmd BufWritePre,BufRead *.html :normal
 
   " - CSS
   autocmd FileType css,scss,sass setlocal iskeyword+=-
