@@ -9,3 +9,5 @@ linters:
     enabled: false
   HexNotation:
     enabled: false
+  NestingDepth:
+    enabled: false
