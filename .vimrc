@@ -131,6 +131,8 @@ augroup vimrc
   autocmd FileType html,javascript,css,scss,sass,py setlocal foldmethod=indent
   autocmd FileType html,javascript,css,scss,sass,py normal zR
   " - NERDTree
-  autocmd vimenter * NERDTree
+  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif 
+  autocmd StdinReadPre * let s:std_in=1
+  autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 augroup END
 
