@@ -11,6 +11,7 @@ Plug 'majutsushi/tagbar'
 Plug 'wakatime/vim-wakatime'
 Plug 'scrooloose/syntastic'
 Plug 'bling/vim-airline'
+Plug 'scrooloose/nerdtree'
 
 call plug#end()
 
@@ -48,7 +49,7 @@ let g:syntastic_check_on_wq = 0
 " JS
 let g:syntastic_javascript_checkers = ["eslint"]
 " HTML (Workaround to silence errors of angular directives)
-let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute " ,"trimming empty <", "unescaped &" , "lacks \"action", "is not recognized!", "discarding unexpected"]
+let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute " ,"trimming empty <", "unescaped &" , "lacks \"action", "is not recognized!", "discarding unexpected", "<img> lacks \"src\" attribute"]
 " Python
 let g:syntastic_python_checkers = ["pep8", "pylint", "python"]
 " SCSS
@@ -85,10 +86,13 @@ inoremap <S-Tab> <c-n>
 let mapleader=","
 
 " Clear search highlight
-noremap <leader>q :noh<CR>
+nnoremap <leader>q :noh<CR>
 
 " Run commands that require an interactive shell
 nnoremap <Leader>r :RunInInteractiveShell<space>
+
+" Toggle NERDTree
+nnoremap <Leader>t :NERDTreeToggle<CR>
 
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
@@ -111,13 +115,11 @@ set diffopt+=vertical
 
 nmap <F8> :TagbarToggle<CR>
 
-"### Syntax related configs ###"
+" Auto Commands
 augroup vimrc
   autocmd!
-
   " - CSS
   autocmd FileType css,scss,sass setlocal iskeyword+=-
-
   " - MD
   " Set syntax highlighting for specific file types
   autocmd BufRead,BufNewFile *.md set filetype=markdown
@@ -125,10 +127,10 @@ augroup vimrc
   autocmd FileType markdown setlocal spell
   " Automatically wrap at 80 characters for Markdown
   autocmd BufRead,BufNewFile *.md setlocal textwidth=80
-
   " - Folding 
   autocmd FileType html,javascript,css,scss,sass,py setlocal foldmethod=indent
   autocmd FileType html,javascript,css,scss,sass,py normal zR
-
+  " - NERDTree
+  autocmd vimenter * NERDTree
 augroup END
 
