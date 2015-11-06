@@ -1,0 +1,11 @@
+linters:
+  HexValidation:
+    enabled: false
+  LeadingZero:
+    enabled: false
+  ColorVariable:
+    enabled: false
+  HexLength:
+    enabled: false
+  HexNotation:
+    enabled: false

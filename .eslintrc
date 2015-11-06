@@ -22,7 +22,10 @@
         "node": true,
         "browser": true,
         "amd": true,
-        "jasmine": true
+        "jasmine": true,
+        "mocha": true,
+        "qunit": true,
+        "jquery": true
     },
     "extends": "eslint:recommended",
     "ecmaFeatures": {
