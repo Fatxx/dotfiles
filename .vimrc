@@ -10,6 +10,7 @@ Plug 'ajh17/Spacegray.vim'
 Plug 'majutsushi/tagbar'
 Plug 'wakatime/vim-wakatime'
 Plug 'scrooloose/syntastic'
+Plug 'bling/vim-airline'
 
 call plug#end()
 
@@ -37,13 +38,7 @@ set nonumber
 set nowrap
 set encoding=utf-8
 
-" Statusline
-set statusline=%#ErrorMsg#[\%l:\%c\-%L]%*\ %f%m%r%h%w\ 
-set statusline+=\ %=                        " align left
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-set statusline+=%{fugitive#statusline()}    " fugitive git info
+let g:airline_powerline_fonts = 1
 
 " Syntastic
 let g:syntastic_always_populate_loc_list = 1
