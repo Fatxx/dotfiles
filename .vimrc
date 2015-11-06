@@ -6,7 +6,7 @@ Plug 'christoomey/vim-run-interactive' " Interactive Shell
 Plug 'tpope/vim-fugitive' " Git helper
 Plug 'vim-scripts/tComment' " Comments Toggle
 Plug 'ervandew/supertab'
-Plug 'tomasr/molokai'
+Plug 'ajh17/Spacegray.vim'
 Plug 'majutsushi/tagbar'
 Plug 'wakatime/vim-wakatime'
 Plug 'scrooloose/syntastic'
@@ -15,6 +15,7 @@ call plug#end()
 
 filetype plugin indent on
 
+colorscheme spacegray
 set backspace=2   " Backspace deletes like most programs in insert mode
 set nobackup
 set nowritebackup
@@ -55,6 +56,8 @@ let g:syntastic_javascript_checkers = ["eslint"]
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute " ,"trimming empty <", "unescaped &" , "lacks \"action", "is not recognized!", "discarding unexpected"]
 " Python
 let g:syntastic_python_checkers = ["pep8", "pylint", "python"]
+" SCSS
+let g:syntastic_scss_checkers = ["scss_lint"]
 
 if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
   syntax on
@@ -116,9 +119,6 @@ nmap <F8> :TagbarToggle<CR>
 "### Syntax related configs ###"
 augroup vimrc
   autocmd!
-
-  " - JS
-  autocmd BufRead,BufNewFile *.js setlocal textwidth=80
 
   " - CSS
   autocmd FileType css,scss,sass setlocal iskeyword+=-
