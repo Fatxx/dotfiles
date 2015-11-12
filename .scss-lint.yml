@@ -11,5 +11,11 @@ linters:
     enabled: false
   NestingDepth:
     enabled: false
+  NestingDepth:
+    enabled: false
   SelectorFormat:
+    enabled: false
+  StringQuotes:
+    enabled: false
+  PropertySortOrder:
     enabled: false

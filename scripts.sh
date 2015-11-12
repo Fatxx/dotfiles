@@ -3,10 +3,7 @@
 # Variables
 dir=~/dotfiles
 olddir=~/dotfiles_old
-files="vimrc zshrc oh-my-zsh"
-
-# Install vim-plug
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+files="vimrc zshrc scss-lint.yml eslintrc"
 
 # Create old_dotfiles folder
 sudo mkdir -p ~/$olddir
@@ -17,6 +14,10 @@ for file in $files; do
   mv ~/.$file $olddir/
   sudo ln -s $dir/.$file ~/.$file
 done
+
+# Install NeoBundle
+curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh > install.sh
+sh ./install.sh
 
 install_zsh () {
 # Test to see if zshell is installed.  If it is:
@@ -43,7 +44,7 @@ else
             sudo apt-get install zsh
             install_zsh
         fi
-    # If the platform is OS X, tell the user to install zsh :)
+    # If the platform is OS X, tell the user to install zsh
     elif [[ $platform == 'Darwin' ]]; then
         echo "Please install zsh, then re-run this script!"
         exit

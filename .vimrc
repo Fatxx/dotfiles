@@ -1,21 +1,35 @@
 set nocompatible
 
-call plug#begin('~/.vim/bundle')
+set runtimepath+=~/.vim/bundle/neobundle.vim/
+call neobundle#begin('~/.vim/bundle')
 
-Plug 'christoomey/vim-run-interactive' " Interactive Shell
-Plug 'tpope/vim-fugitive' " Git helper
-Plug 'vim-scripts/tComment' " Comments Toggle
-Plug 'ervandew/supertab'
-Plug 'ajh17/Spacegray.vim'
-Plug 'majutsushi/tagbar'
-Plug 'wakatime/vim-wakatime'
-Plug 'scrooloose/syntastic'
-Plug 'bling/vim-airline'
-Plug 'scrooloose/nerdtree'
-
-call plug#end()
+NeoBundle 'christoomey/vim-run-interactive' " Interactive Shell
+NeoBundle 'tpope/vim-fugitive' " Git helper
+NeoBundle 'vim-scripts/tComment' " Comments Toggle
+NeoBundle 'ervandew/supertab'
+NeoBundle 'ajh17/Spacegray.vim'
+NeoBundle 'majutsushi/tagbar'
+NeoBundle 'wakatime/vim-wakatime'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'briancollins/vim-jst'
+NeoBundle 'bling/vim-airline'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'marijnh/tern_for_vim'
+NeoBundle 'Shougo/vimproc.vim', {
+\ 'build' : {
+\     'windows' : 'tools\\update-dll-mingw',
+\     'cygwin' : 'make -f make_cygwin.mak',
+\     'mac' : 'make',
+\     'linux' : 'make',
+\     'unix' : 'gmake',
+\    },
+\ }
+call neobundle#end()
 
 filetype plugin indent on
+
+NeoBundleCheck
 
 colorscheme spacegray
 set backspace=2   " Backspace deletes like most programs in insert mode
@@ -37,15 +51,19 @@ set incsearch     " show search matches as you type
 set hlsearch
 set nonumber
 set nowrap
+set clipboard=unnamed
 set encoding=utf-8
 
+let mapleader=","
 let g:airline_powerline_fonts = 1
 
 " Syntastic
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_open = 0
+let g:syntastic_loc_list_height = 5
+nnoremap <leader>e :lclose<CR>
+"
 " JS
 let g:syntastic_javascript_checkers = ["eslint"]
 " HTML (Workaround to silence errors of angular directives)
@@ -82,8 +100,6 @@ function! InsertTabWrapper()
 endfunction
 inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <S-Tab> <c-n>
-
-let mapleader=","
 
 " Clear search highlight
 nnoremap <leader>q :noh<CR>
@@ -135,4 +151,47 @@ augroup vimrc
   autocmd StdinReadPre * let s:std_in=1
   autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 augroup END
+
+" Unite
+nnoremap [unite] <Nop>
+nmap <space> [unite]
+
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
+      \ 'ignore_pattern', join([
+      \ '\.git/',
+      \ 'git5/.*/review/',
+      \ 'google/obj/',
+      \ 'tmp/',
+      \ '.sass-cache',
+      \ 'node_modules/',
+      \ 'bower_components/',
+      \ 'dist/',
+      \ '.git5_specs/',
+      \ '.pyc',
+      \ ], '\|'))
+
+let g:unite_data_directory='~/.vim/.cache/unite'
+let g:unite_enable_start_insert=1
+let g:unite_source_history_yank_enable=1
+let g:unite_prompt='» '
+let g:unite_split_rule = 'botright'
+if executable('ag')
+  let g:unite_source_grep_command='ag'
+  let g:unite_source_grep_default_opts='--nocolor --nogroup -S -C4'
+  let g:unite_source_grep_recursive_opt=''
+endif
+
+noremap <C-p> :Unite -start-insert -auto-resize file file_rec/async<cr>
+nnoremap [unite]/ :Unite grep:.<cr>
+nnoremap [unite]s :Unite -quick-match -start-insert buffer<cr>
+nnoremap <silent> [unite]f :<C-u>Unite -buffer-name=files file_rec/async file/new<CR>
+
+autocmd vimrc FileType unite call s:unite_settings()
+function! s:unite_settings()
+  inoremap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
+  nnoremap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
+endfunction
+
+
 
