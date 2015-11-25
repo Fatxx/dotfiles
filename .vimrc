@@ -6,16 +6,13 @@ call neobundle#begin('~/.vim/bundle')
 NeoBundle 'christoomey/vim-run-interactive' " Interactive Shell
 NeoBundle 'tpope/vim-fugitive' " Git helper
 NeoBundle 'vim-scripts/tComment' " Comments Toggle
-NeoBundle 'ervandew/supertab'
 NeoBundle 'ajh17/Spacegray.vim'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'wakatime/vim-wakatime'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'briancollins/vim-jst'
 NeoBundle 'bling/vim-airline'
-NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'Shougo/unite.vim'
-NeoBundle 'marijnh/tern_for_vim'
 NeoBundle 'Shougo/vimproc.vim', {
 \ 'build' : {
 \     'windows' : 'tools\\update-dll-mingw',
@@ -51,7 +48,8 @@ set incsearch     " show search matches as you type
 set hlsearch
 set nonumber
 set nowrap
-set clipboard=unnamed
+set linebreak
+set showbreak=>\ \ \
 set encoding=utf-8
 
 let mapleader=","
@@ -65,6 +63,7 @@ let g:syntastic_loc_list_height = 5
 nnoremap <leader>e :lclose<CR>
 "
 " JS
+"let g:syntastic_javascript_checkers = ["standard"]
 let g:syntastic_javascript_checkers = ["eslint"]
 " HTML (Workaround to silence errors of angular directives)
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute " ,"trimming empty <", "unescaped &" , "lacks \"action", "is not recognized!", "discarding unexpected", "<img> lacks \"src\" attribute"]
@@ -108,7 +107,7 @@ nnoremap <leader>q :noh<CR>
 nnoremap <Leader>r :RunInInteractiveShell<space>
 
 " Toggle NERDTree
-nnoremap <Leader>t :NERDTreeToggle<CR>
+"nnoremap <Leader>t :NERDTreeToggle<CR>
 
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
@@ -134,22 +133,27 @@ nmap <F8> :TagbarToggle<CR>
 " Auto Commands
 augroup vimrc
   autocmd!
+  " Clear whitespaces
+  "autocmd FileType html,css,scss,javascript,py autocmd BufWritePre <buffer> :%s/\s\+$//e
   " - CSS
   autocmd FileType css,scss,sass setlocal iskeyword+=-
   " - MD
   " Set syntax highlighting for specific file types
   autocmd BufRead,BufNewFile *.md set filetype=markdown
   " Enable spellchecking for Markdown
-  autocmd FileType markdown setlocal spell
+  "autocmd FileType markdown setlocal spell
   " Automatically wrap at 80 characters for Markdown
   autocmd BufRead,BufNewFile *.md setlocal textwidth=80
   " - Folding 
   autocmd FileType html,javascript,css,scss,sass,py setlocal foldmethod=indent
   autocmd FileType html,javascript,css,scss,sass,py normal zR
   " - NERDTree
-  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif 
-  autocmd StdinReadPre * let s:std_in=1
-  autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+  "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif 
+  "autocmd StdinReadPre * let s:std_in=1
+  "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+  " - StandardJS
+ "autocmd bufwritepost *.js silent !standard % --format
+  set autoread
 augroup END
 
 " Unite
@@ -192,6 +196,3 @@ function! s:unite_settings()
   inoremap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
   nnoremap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
 endfunction
-
-
-

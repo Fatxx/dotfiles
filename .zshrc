@@ -97,3 +97,5 @@ source  ~/.nvm/nvm.sh
 function vimsheet() {
   open ~/Documents/vimsheet.png
 }
+export EDITOR=mvim -f --nomru -c "au VimLeave * !open -a iTerm"
+export GIT_EDITOR=mvim -f --nomru -c "au VimLeave * !open -a iTerm"

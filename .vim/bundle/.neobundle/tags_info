@@ -1,10 +1,7 @@
 Spacegray.vim
-nerdtree
-supertab
 syntastic
 tComment
 tagbar
-tern_for_vim
 unite.vim
 vim-airline
 vim-fugitive
