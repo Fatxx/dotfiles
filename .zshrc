@@ -53,7 +53,7 @@ plugins=(git brew bower dirhistory git-extras npm osx pip python wd)
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/MacGPG2/bin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/MacGPG2/bin:/usr/local/Cellar/macvim/7.4-82/bin:/opt/homebrew-cask/Caskroom/firefox/40.0.3/Firefox.app"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -97,5 +97,3 @@ source  ~/.nvm/nvm.sh
 function vimsheet() {
   open ~/Documents/vimsheet.png
 }
-export EDITOR=mvim -f --nomru -c "au VimLeave * !open -a iTerm"
-export GIT_EDITOR=mvim -f --nomru -c "au VimLeave * !open -a iTerm"

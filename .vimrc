@@ -1,5 +1,3 @@
-set nocompatible
-
 set runtimepath+=~/.vim/bundle/neobundle.vim/
 call neobundle#begin('~/.vim/bundle')
 
@@ -28,29 +26,23 @@ filetype plugin indent on
 
 NeoBundleCheck
 
-colorscheme spacegray
-set backspace=2   " Backspace deletes like most programs in insert mode
-set nobackup
-set nowritebackup
-set history=50
+colorscheme spacegray 
 set ruler         " show the cursor position all the time
-set showcmd       " display incomplete commands
-set laststatus=2  " Always display the status line
 set undolevels=1000 " Increase undo levels
 set pastetoggle=<F2>
-set nocompatible
-set noswapfile
 set mouse=a
+" set encoding=utf-8
+set noswapfile
 set showmatch     " set show matching parenthesis
 set ignorecase    " ignore case when searching
 set smartcase     " ignore case if search pattern is all lowercase, case-sensitive otherwise
-set incsearch     " show search matches as you type
-set hlsearch
-set nonumber
-set nowrap
-set linebreak
-set showbreak=>\ \ \
-set encoding=utf-8
+" set showcmd       " display incomplete commands
+" set laststatus=2  " Always display the status line
+" set nocompatible
+" set nonumber
+" set nowrap
+" set linebreak
+" set showbreak=>\ \ \
 
 let mapleader=","
 let g:airline_powerline_fonts = 1
@@ -61,7 +53,7 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_loc_list_height = 5
 nnoremap <leader>e :lclose<CR>
-"
+
 " JS
 "let g:syntastic_javascript_checkers = ["standard"]
 let g:syntastic_javascript_checkers = ["eslint"]
@@ -75,9 +67,9 @@ let g:syntastic_scss_checkers = ["scss_lint"]
 if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
   syntax on
   set guifont=Fira\ Mono
-  set columns=999
-  set linespace=1.4
-endi
+  "set columns=999
+  "set linespace=2:s endi
+endif
 
 " Softtabs, 2 spaces
 set tabstop=2

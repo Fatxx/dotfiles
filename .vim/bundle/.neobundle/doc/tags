@@ -211,6 +211,7 @@ airline-whitespace	airline.txt	/*airline-whitespace*
 airline-windowswap	airline.txt	/*airline-windowswap*
 airline-wordcount	airline.txt	/*airline-wordcount*
 airline-writing-extensions	airline.txt	/*airline-writing-extensions*
+airline-ycm	airline.txt	/*airline-ycm*
 airline.txt	airline.txt	/*airline.txt*
 b:tcomment_def_{NAME}	tcomment.txt	/*b:tcomment_def_{NAME}*
 filter-overrides	syntastic.txt	/*filter-overrides*
