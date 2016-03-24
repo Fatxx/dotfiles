@@ -1,1 +1,0 @@
-/Users/andrefatia/.config/fish/
