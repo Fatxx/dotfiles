@@ -25,6 +25,10 @@ Plug 'wakatime/vim-wakatime'
 Plug 'jparise/vim-graphql'
 Plug 'mxw/vim-jsx'
 Plug 'airblade/vim-gitgutter'
+Plug 'scrooloose/nerdcommenter'
+Plug 'git://github.com/altercation/vim-colors-solarized.git'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 
@@ -32,7 +36,6 @@ filetype plugin indent on  " Load plugins according to detected filetype.
 syntax on                  " Enable syntax highlighting.
 
 set autoindent             " Indent according to previous line.
-set expandtab              " Use spaces instead of tabs.
 set softtabstop =2         " Tab key indents by 4 spaces.
 set shiftwidth  =2         " >> indents by 4 spaces.
 set shiftround             " >> indents to next multiple of 'shiftwidth'.
@@ -61,8 +64,8 @@ set synmaxcol   =200       " Only highlight the first 200 columns.
 
 set noswapfile             " No swap files
 set t_CO=256
-set background=dark
-colorscheme hybrid
+set background=light
+colorscheme solarized
 
 set mouse=a
 
@@ -72,22 +75,22 @@ set updatetime=100
 set rtp+=/usr/local/opt/fzf
 
 if has("gui_macvim")
-  set macligatures
+set macligatures
 endif
 
 set guifont=Fira\ Code:h12
 
 set list                   " Show non-printable characters.
 if has('multi_byte') && &encoding ==# 'utf-8'
-  let &listchars = 'tab:▸ ,extends:❯,precedes:❮,nbsp:±'
+let &listchars = 'tab:▸ ,extends:❯,precedes:❮,nbsp:±'
 else
-  let &listchars = 'tab:> ,extends:>,precedes:<,nbsp:.'
+let &listchars = 'tab:> ,extends:>,precedes:<,nbsp:.'
 endif
 
 " The fish shell is not very compatible to other shells and unexpectedly
 " breaks things that use 'shell'.
 if &shell =~# 'fish$'
-  set shell=/bin/bash
+set shell=/bin/bash
 endif
 
 " Keybinds
@@ -95,7 +98,7 @@ endif
 " Open fuzzy finder 
 nnoremap <C-p> :Files .<CR>
 " Open fuzzy finder for current word under the cursor
-:nnoremap <leader>p :Files .<CR> <C-R><C-W>
+nnoremap <leader>p :Files .<CR> <C-R><C-W>
 " Open folder tree
 nnoremap <C-b> <:NERDTreeToggle<CR>
 " Toggle Quick Search
@@ -106,7 +109,9 @@ nnoremap <C-f> :Ack!<space>
 " Close Buffer
 nnoremap <leader>w :bd<CR>
 " Next Buffer
-nnoremap <C-n> :bn<CR>
+nnoremap <C-e> :bn<CR>
+" Prev Buffer
+nnoremap <C-q> :bp<CR>
 " Format JS
 nnoremap <leader>. :ALEFix<CR>
 " Clear search highlight
@@ -114,9 +119,9 @@ nnoremap <leader>/ :noh<CR>
 " Find and Replace
 nnoremap <leader>r :%s/<space>/<space>/g
 " Copy to Clipboard
-vnoremap <C-c> "+y<CR>
+vnoremap <leader>c "+y<CR>
 " Paste to Clipboard
-nnoremap <C-v> "+p<CR>
+nnoremap <leader>v "+p<CR>
 
 " JS
 let g:javascript_plugin_jsdoc = 1
@@ -126,8 +131,12 @@ let g:ale_fixers = {'javascript': ['prettier_standard']}
 let g:ale_linters = {'javascript': ['standard']}
 let g:ale_fix_on_save = 1
 
-" Linter errors in airline
+" Airline
 let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#tabline#formatter = 'default'
+let g:airline_theme='solarized'
+let g:airline_solarized_bg='light'
+
 
 " Autocomplete
 :set omnifunc=javascriptcomplete#CompleteJS
@@ -140,3 +149,27 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+
+if &term =~ '256color'
+    " disable Background Color Erase (BCE) so that color schemes
+    " render properly when inside 256-color tmux and GNU screen.
+    " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
+    set t_ut=
+endif
+
+" Disable audible and visual bells
+set noerrorbells
+set novisualbell
+set t_vb=
+
+" Saner behavior of n and N
+nnoremap <expr> n  'Nn'[v:searchforward]
+nnoremap <expr> N  'nN'[v:searchforward]
